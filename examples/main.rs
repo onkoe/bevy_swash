@@ -1,3 +1,5 @@
+#![expect(clippy::type_complexity, reason = "long ahh types")]
+
 use bevy::app::{App, Startup, Update};
 use bevy::asset::{AssetServer, Assets};
 use bevy::color::palettes::css::*;
@@ -162,7 +164,7 @@ fn main() {
     let mut app = App::new();
 
     app.add_plugins(DefaultPlugins)
-        .add_plugins(FrameTimeDiagnosticsPlugin::default())
+        .add_plugins(FrameTimeDiagnosticsPlugin)
         .add_plugins(OutlinedTextPlugin)
         .insert_resource(ClearColor(Color::BLACK))
         .add_systems(Startup, setup)
