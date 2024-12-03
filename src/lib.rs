@@ -1,22 +1,28 @@
-use bevy::asset::io::Reader;
-use bevy::asset::LoadContext;
-use bevy::asset::{AssetLoader, AsyncReadExt};
-use bevy::prelude::LinearRgba;
-use bevy::prelude::*;
-use bevy::render::render_asset::RenderAssetUsages;
-use bevy::render::render_resource::{Extent3d, TextureDimension, TextureFormat};
-use bevy::render::{Extract, RenderApp};
-use bevy::sprite::{Anchor, ExtractedSprite, ExtractedSprites, SpriteSource, SpriteSystem};
-use bevy::utils::HashMap;
-use bevy::window::{PrimaryWindow, WindowScaleFactorChanged};
-use std::mem;
+use core::mem;
 use std::sync::Arc;
-use swash::scale::{Render, ScaleContext, Scaler, Source};
-use swash::shape::{ShapeContext, Shaper};
-use swash::text::cluster::{CharCluster, Parser, Token, Whitespace};
-use swash::text::{Codepoint, Script};
-use swash::zeno::{Cap, Format, Join, Stroke};
-use swash::{CacheKey, Charmap, FontRef, GlyphId};
+
+use bevy::{
+    asset::{io::Reader, AssetLoader, AsyncReadExt, LoadContext},
+    prelude::{LinearRgba, *},
+    render::{
+        render_asset::RenderAssetUsages,
+        render_resource::{Extent3d, TextureDimension, TextureFormat},
+        Extract, RenderApp,
+    },
+    sprite::{Anchor, ExtractedSprite, ExtractedSprites, SpriteSource, SpriteSystem},
+    utils::HashMap,
+    window::{PrimaryWindow, WindowScaleFactorChanged},
+};
+use swash::{
+    scale::{Render, ScaleContext, Scaler, Source},
+    shape::{ShapeContext, Shaper},
+    text::{
+        cluster::{CharCluster, Parser, Token, Whitespace},
+        Codepoint, Script,
+    },
+    zeno::{Cap, Format, Join, Stroke},
+    CacheKey, Charmap, FontRef, GlyphId,
+};
 use thiserror::Error;
 
 type SwashImage = swash::scale::image::Image;
